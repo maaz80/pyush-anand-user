@@ -1,31 +1,32 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useState } from "react";
+import template from '../../assets/template.webp';
 
 const services = [
      {
           title: "Motion",
-          image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop",
+          image: template,
      },
      {
           title: "Print",
-          image: "https://images.unsplash.com/photo-1517842645767-c639042777db?q=80&w=1200&auto=format&fit=crop",
+          image: template,
      },
      {
           title: "Package & Merch",
-          image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop",
+          image: template,
      },
      {
           title: "UI",
-          image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop",
+          image: template,
      },
      {
           title: "Social Media",
-          image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1200&auto=format&fit=crop",
+          image: template,
      },
      {
           title: "UX",
-          image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=1200&auto=format&fit=crop",
+          image: template,
      },
 ];
 
