@@ -1,6 +1,6 @@
 import { CgCopyright } from "react-icons/cg";
 import Logo from '../assets/pyush-big-logo.webp';
-import FooterCtaBg from '../assets/footer-cta-bg.webp';
+// import FooterCtaBg from '../assets/footer-cta-bg.webp';
 import { AiFillInstagram } from "react-icons/ai";
 import { IoLogoLinkedin } from "react-icons/io";
 import Button from "./Button";
@@ -42,12 +42,16 @@ export default function Footer({ locationGroups = [], serviceGroups = [] }) {
                     <div className="relative max-w-310 mx-auto rounded-[28px] overflow-hidden min-h-55 md:min-h-75 flex items-center">
 
                          {/* BG IMAGE */}
-                         <img
+                         {/* <img
                               src={FooterCtaBg}
                               alt="Footer CTA Background"
                               className="absolute inset-0 w-full h-full object-fill"
-                         />
-
+                         /> */}
+                         <picture>
+                              <source media="(max-width: 768px)" srcSet="/footer-cta-bg-mobile.webp" />
+                              <source media="(min-width: 769px)" srcSet="/footer-cta-bg.webp" />
+                              <img src="/footer-cta-bg.webp" alt="" className="absolute inset-0 w-full h-full object-fill" />
+                         </picture>
 
                          {/* CONTENT */}
                          <div className="relative z-10 flex flex-col items-start justify-center h-full px-8 sm:px-12 md:px-16 py-10 md:py-14 max-w-190">
@@ -87,26 +91,23 @@ export default function Footer({ locationGroups = [], serviceGroups = [] }) {
                                    {/* SOCIALS */}
                                    <div className="flex items-center gap-5">
 
-                                        <a
-                                             href="#"
+                                        <div
                                              className="text-white text-[28px] hover:opacity-70 transition-all duration-300"
                                         >
                                              <AiFillInstagram />
-                                        </a>
+                                        </div>
 
-                                        <a
-                                             href="#"
+                                        <div
                                              className="text-white text-[28px] hover:opacity-70 transition-all duration-300"
                                         >
                                              <IoLogoLinkedin />
-                                        </a>
+                                        </div>
 
-                                        <a
-                                             href="#"
+                                        <div
                                              className="text-white text-[34px] hover:opacity-70 transition-all duration-300"
                                         >
                                              <CgCopyright />
-                                        </a>
+                                        </div>
 
                                    </div>
 
@@ -253,7 +254,7 @@ export default function Footer({ locationGroups = [], serviceGroups = [] }) {
                                                             to={hasPublishedPage(item) ? getItemPath(item) : "#"}
                                                             className={`${hasPublishedPage(item)
                                                                  ? "text-white/70 hover:text-white cursor-pointer text-[14px] md:text-[15px] "
-                                                                 : "text-white/30 pointer-events-none cursor-not-allowed text-[14px] md:text-[15px] "
+                                                                 : "text-white/60 pointer-events-none cursor-not-allowed text-[14px] md:text-[15px] "
                                                                  }`}
                                                        >
                                                             {item.title}

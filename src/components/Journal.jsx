@@ -89,7 +89,7 @@ const Journal = () => {
                                         sizes="(max-width: 768px) 100vw, 33vw"
                                         className="w-full h-50 md:h-93.5 object-fill group-hover:scale-102 transition-transform duration-300 ease-in-out"
                                    />
-                                   <div className="bg-white min-h-18 md:min-h-26 rounded-b-2xl shadow-sm p-4 flex items-center">
+                                   <div className="bg-white min-h-18 md:min-h-26 shadow-sm p-4 flex items-center">
 
                                         <h2 className="text-[20px] md:text-[24px] xl:text-[32px] leading-7 md:leading-9 xl:leading-10 text-dark-blue line-clamp-2">
                                              {blog?.title || '5 Mistakes Startups Make In Branding'}

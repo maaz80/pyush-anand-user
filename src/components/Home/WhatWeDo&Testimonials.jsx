@@ -262,6 +262,7 @@ export default function WhatWeDo({data}) {
 
                                    <button
                                         onClick={handlePrev}
+                                        aria-label="Previous Testimonial"
                                         className="w-12 h-12 rounded-full border border-[#8EA4E8] flex items-center justify-center text-white/50 hover:text-white hover:border-white transition-all duration-300 cursor-pointer active:scale-95"
                                    >
                                         <IoMdArrowBack size={28} />
@@ -269,6 +270,7 @@ export default function WhatWeDo({data}) {
 
                                    <button
                                         onClick={handleNext}
+                                        aria-label="Next Testimonial"
                                         className="w-12 h-12 rounded-full border border-[#8EA4E8] flex items-center justify-center text-white/50 hover:text-white hover:border-white transition-all duration-300 cursor-pointer active:scale-95"
                                    >
                                         <IoMdArrowForward size={28} />

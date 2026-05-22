@@ -328,7 +328,7 @@ function ExpandCard({ image, setActiveImage }) {
                >
                     <img
                          src={image}
-                         alt=""
+                         alt="Archive Image"
                          className="
                          h-full
                          w-full
