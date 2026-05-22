@@ -1,0 +1,209 @@
+/* =============================================
+   WhyChooseUs — Card Hover Dot Animation
+   ============================================= */
+
+
+/* ---- Card Title ---- */
+.wcu-card__title {
+     transition: opacity 0.2s ease;
+}
+
+/* ---- Blue Dot (the star of the show) ---- */
+.wcu-card__dot {
+     position: absolute;
+     border-radius: 50%;
+     background: linear-gradient(95deg, #0035AB, #001542);
+     z-index: 3;
+     pointer-events: none;
+
+     /* Start: tiny, center */
+     width: 18px;
+     height: 18px;
+     left: 50%;
+     top: 50%;
+     transform: translate(-50%, -50%) scale(0);
+}
+
+/* ---- Hover Content (text shown after card fills) ---- */
+.wcu-card__hover {
+     position: absolute;
+     inset: 0;
+     z-index: 25;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     padding: 28px;
+     opacity: 0;
+     pointer-events: none;
+     transition: opacity 1.2s ease 0.5s;
+}
+
+
+.wcu-card__hover p {
+     font-family: 'Plus Jakarta Sans', sans-serif;
+     font-size: 16px;
+     color: rgba(255, 255, 255, 0.88);
+     line-height: 1.75;
+     margin: 0;
+     opacity: 0;
+     transform: translateY(14px);
+     transition: opacity 0.3s ease 0.65s, transform 0.3s ease 0.65s;
+     /* enter */
+}
+
+/* Hover pe — smooth enter */
+.wcu-card:hover .wcu-card__hover p {
+     opacity: 1;
+     transform: translateY(0);
+     transition: opacity 0.3s ease 0.65s, transform 0.3s ease 0.65s;
+}
+
+/* Hover hata to — fast exit, no delay */
+.wcu-card:not(:hover) .wcu-card__hover p {
+     opacity: 0;
+     transform: translateY(14px);
+     transition: opacity 0.2s ease 0s, transform 0.2s ease 0s;
+}
+
+/* =============================================
+   HOVER STATE
+   ============================================= */
+
+
+/* Dot animates */
+.wcu-card:hover .wcu-card__dot {
+     z-index: 20;
+     animation: wcuDotJourney 0.85s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+/* Hover content fades in */
+.wcu-card:hover .wcu-card__hover {
+     opacity: 1;
+     pointer-events: auto;
+}
+
+.wcu-card:hover .wcu-card__hover h3,
+.wcu-card:hover .wcu-card__hover p {
+     opacity: 1;
+     z-index: 50;
+     position: relative;
+     transform: translateY(0);
+}
+
+/* =============================================
+   DOT KEYFRAME ANIMATION
+   
+   Sequence:
+   0–15%  → Dot appears at center (scale 0→1)
+   15–32% → Moves to bottom-right with bounce overshoot
+   32–44% → Bounces back slightly (scale down)
+   44–54% → Bounces forward again (scale up)
+   54–62% → Returns to center
+   62–100%→ Expands to fill entire card
+   ============================================= */
+@keyframes wcuDotJourney {
+     0% {
+          left: 50%;
+          top: 50%;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          transform: translate(-50%, -50%) scale(0);
+     }
+
+     /* Appear at center */
+     15% {
+          left: 50%;
+          top: 50%;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          transform: translate(-50%, -50%) scale(1);
+     }
+
+     /* Move to bottom-right — slight overshoot */
+     32% {
+          left: 70%;
+          top: 70%;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          transform: translate(0, 0) scale(1.65);
+     }
+
+     /* Bounce back — compress */
+     44% {
+          left: 70%;
+          top: 70%;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          transform: translate(0, 0) scale(1.82);
+     }
+
+     /* Bounce forward — re-expand */
+     54% {
+          left: 70%;
+          top: 70%;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          transform: translate(0, 0) scale(1.06);
+     }
+
+     /* Return to center */
+     62% {
+          left: 50%;
+          top: 50%;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          transform: translate(-50%, -50%) scale(0.95);
+     }
+
+     /* Expand to fill entire card */
+     100% {
+          left: 50%;
+          top: 50%;
+          width: 300%;
+          height: 300%;
+          border-radius: 8px;
+          transform: translate(-50%, -50%) scale(1);
+     }
+}
+
+/* Dot contract animation — hover hatne pe */
+@keyframes wcuDotLeave {
+     0% {
+          left: 50%;
+          top: 50%;
+          width: 300%;
+          height: 300%;
+          border-radius: 8px;
+          transform: translate(-50%, -50%) scale(1);
+     }
+
+     38% {
+          left: 50%;
+          top: 50%;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          transform: translate(-50%, -50%) scale(0.95);
+     }
+
+     /* Gayab */
+     100% {
+          left: 50%;
+          top: 50%;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          transform: translate(-50%, -50%) scale(0);
+     }
+}
+
+/* Leave class */
+.wcu-card__dot--leave {
+     animation: wcuDotLeave 1.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards !important;
+}
