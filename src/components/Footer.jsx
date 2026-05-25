@@ -37,7 +37,7 @@ export default function Footer({ locationGroups = [], serviceGroups = [] }) {
      return (
           <footer className="relative bg-dark-blue text-white plus-jakarta">
                {/* CTA SECTION */}
-               <div className="relative z-20 px-5 sm:px-8 md:px-10 translate-y-[-200px] mb-[-100px]">
+               <div className="relative z-20 px-5 sm:px-8 md:px-10 -translate-y-50 -mb-25">
 
                     <div className="relative max-w-310 mx-auto rounded-[28px] overflow-hidden min-h-55 md:min-h-75 flex items-center">
 
