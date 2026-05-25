@@ -12,6 +12,7 @@ import { getServices } from '../utils/service';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom'
 import { matchesRouteSlug } from '../utils/slug';
+import { optimizeCloudinaryUrl } from '../utils/imageService';
 const Service = () => {
      const { itemSlug } = useParams();
      const [service, setService] = useState(null)
@@ -130,7 +131,21 @@ const Service = () => {
                               {/* Right Image */}
                               <div className="sticky top-10">
                                    {service?.image ? (
-                                        <img src={service.image} alt={`${service?.title || 'Location'} - Image`} className="w-full h-70 md:h-90 rounded-[28px] object-fill" />
+                                        <img
+                                             src={optimizeCloudinaryUrl(service.image, 520, { crop: 'fill', height: 360 })}
+                                             srcSet={`
+                                                  ${optimizeCloudinaryUrl(service.image, 320, { crop: 'fill', height: 220 })} 320w,
+                                                  ${optimizeCloudinaryUrl(service.image, 520, { crop: 'fill', height: 360 })} 520w,
+                                                  ${optimizeCloudinaryUrl(service.image, 1040, { crop: 'fill', height: 720 })} 1040w
+                                             `}
+                                             sizes="(max-width: 768px) 100vw, 520px"
+                                             width={520}
+                                             height={360}
+                                             loading="lazy"
+                                             decoding="async"
+                                             alt={`${service?.title || 'Service'} - Image`}
+                                             className="w-full h-70 md:h-90 rounded-[28px] object-fill"
+                                        />
                                    ) : (
                                         <div className="w-full h-70 md:h-90 rounded-[28px] bg-[#CFCFCF]" />
                                    )}

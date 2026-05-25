@@ -9,7 +9,9 @@ import { useParams } from 'react-router-dom';
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { getLocations } from '../utils/locations';
 import { matchesRouteSlug } from '../utils/slug';
+import { optimizeCloudinaryUrl } from '../utils/imageService';
 const RelatedBlogs = lazy(() => import('../components/RelatedBlogs'));
+
 const Faq = lazy(() => import('../components/Faq'));
 
 const Location = () => {
@@ -129,7 +131,21 @@ const Location = () => {
                               {/* Right Image */}
                               <div className="sticky top-10">
                                    {location?.image ? (
-                                        <img src={location.image} alt={`${location?.title || 'Location'} - Image`} className="w-full h-70 md:h-90 rounded-[28px] object-fill" />
+                                        <img
+                                             src={optimizeCloudinaryUrl(location.image, 520, { crop: 'fill', height: 360 })}
+                                             srcSet={`
+                                                  ${optimizeCloudinaryUrl(location.image, 320, { crop: 'fill', height: 220 })} 320w,
+                                                  ${optimizeCloudinaryUrl(location.image, 520, { crop: 'fill', height: 360 })} 520w,
+                                                  ${optimizeCloudinaryUrl(location.image, 1040, { crop: 'fill', height: 720 })} 1040w
+                                             `}
+                                             sizes="(max-width: 768px) 100vw, 520px"
+                                             width={520}
+                                             height={360}
+                                             loading="lazy"
+                                             decoding="async"
+                                             alt={`${location?.title || 'Location'} - Image`}
+                                             className="w-full h-70 md:h-90 rounded-[28px] object-fill"
+                                        />
                                    ) : (
                                         <div className="w-full h-70 md:h-90 rounded-[28px] bg-[#CFCFCF]" />
                                    )}

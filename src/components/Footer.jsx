@@ -37,7 +37,7 @@ export default function Footer({ locationGroups = [], serviceGroups = [] }) {
      return (
           <footer className="relative bg-dark-blue text-white plus-jakarta">
                {/* CTA SECTION */}
-               <div className="relative z-20 px-5 sm:px-8 md:px-10 translate-y-[-200px] mb-[-200px]">
+               <div className="relative z-20 px-5 sm:px-8 md:px-10 translate-y-[-200px] mb-[-100px]">
 
                     <div className="relative max-w-310 mx-auto rounded-[28px] overflow-hidden min-h-55 md:min-h-75 flex items-center">
 
@@ -50,7 +50,7 @@ export default function Footer({ locationGroups = [], serviceGroups = [] }) {
                          <picture>
                               <source media="(max-width: 768px)" srcSet="/footer-cta-bg-mobile.webp" />
                               <source media="(min-width: 769px)" srcSet="/footer-cta-bg.webp" />
-                              <img src="/footer-cta-bg.webp" alt="" className="absolute inset-0 w-full h-full object-fill" />
+                              <img src="/footer-cta-bg.webp" alt="" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-fill" />
                          </picture>
 
                          {/* CONTENT */}
@@ -83,7 +83,7 @@ export default function Footer({ locationGroups = [], serviceGroups = [] }) {
                          <div className="flex flex-col sm:flex-row gap-8 md:gap-28">
 
                               {/* LOGO */}
-                              <img src={Logo} alt="Pyush Logo" className="w-32 h-45" width={112} height={160} className='object-cover'/>
+                              <img src={Logo} alt="Pyush Logo" width={112} height={160} className="w-32 h-45 object-cover"/>
 
                               {/* INFO */}
                               <div>

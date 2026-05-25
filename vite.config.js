@@ -5,13 +5,14 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   build: {
-    cssCodeSplit: true,        // ✅ har route ka alag CSS
+    cssCodeSplit: true,        //  har route ka alag CSS
     cssMinify: true,
     minify: 'terser',
     reportCompressedSize: false,
     chunkSizeWarningLimit: 1000,
     modulePreload: {
-      polyfill: true
+      polyfill: false,
+      resolveDependencies: () => [] //  Dynamic chunks preload block
     },
     terserOptions: {
       compress: {
@@ -24,18 +25,18 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            // ✅ Animation libraries — sabse bade, alag chunk
+            //  Animation libraries — sabse bade, alag chunk
             if (id.includes('gsap')) return 'gsap';
             if (id.includes('framer-motion')) return 'framer-motion';
 
-            // ✅ React core
+            //  React core
             if (id.includes('react-dom')) return 'react-dom';
             if (id.includes('react-router')) return 'router';
 
-            // ✅ Icons — badi library hai
+            //  Icons — badi library hai
             if (id.includes('react-icons')) return 'icons';
 
-            // ✅ Baaki sab vendor ek saath
+            //  Baaki sab vendor ek saath
             if (id.includes('node_modules')) return 'vendor';
           }
         }

@@ -1,4 +1,5 @@
 import TeamMember from '../../assets/member.webp';
+import { optimizeCloudinaryUrl } from '../../utils/imageService';
 
 const teamMembers = [
      {
@@ -77,8 +78,12 @@ const Team = () => {
 
                                         {/* IMAGE */}
                                         <img
-                                             src={member.image}
+                                             src={optimizeCloudinaryUrl(member.image, 350, { crop: 'fill', height: 450 })}
                                              alt={member.name}
+                                             width={350}
+                                             height={450}
+                                             loading="lazy"
+                                             decoding="async"
                                              className="absolute inset-0 w-full h-full object-fill transition-transform duration-700 group-hover:scale-102"
                                         />
 

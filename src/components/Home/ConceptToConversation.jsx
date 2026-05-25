@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useState } from "react";
 import template from '../../assets/template.webp';
+import { optimizeCloudinaryUrl } from "../../utils/imageService";
 
 const services = [
      {
@@ -131,10 +132,12 @@ export default function ConceptToConversation({data}) {
 
                                         {/* Image */}
                                         <img
-                                             src={service?.image}
+                                             src={optimizeCloudinaryUrl(service?.image, 300, { crop: 'fill', height: 450 })}
                                              alt={service?.boldtext}
                                              width={300}
                                              height={450}
+                                             loading="lazy"
+                                             decoding="async"
                                              className="h-full w-full object-cover"
                                         />
 

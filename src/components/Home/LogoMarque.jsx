@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getImages } from "../../utils/imageService.js";
+import { getImages, optimizeCloudinaryUrl } from "../../utils/imageService.js";
 
 const LogoMarquee = () => {
 
@@ -30,7 +30,7 @@ const LogoMarquee = () => {
                     {logos.map((logo, index) => (
                          <img
                               key={index}
-                              src={logo}
+                              src={optimizeCloudinaryUrl(logo, 200, { crop: 'limit' })}
                               alt={titles[index] || `Company Logo ${index + 1}`}
                               width="252"
                               height="150"
@@ -44,7 +44,7 @@ const LogoMarquee = () => {
                     {logos.map((logo, index) => (
                          <img
                               key={`dup-${index}`}
-                              src={logo}
+                              src={optimizeCloudinaryUrl(logo, 200, { crop: 'limit' })}
                               alt={titles[index] || `Company Logo ${index + 1}`}
                               width="252"
                               height="150"
@@ -62,7 +62,7 @@ const LogoMarquee = () => {
                     {logos.map((logo, index) => (
                          <img
                               key={`right-${index}`}
-                              src={logo}
+                              src={optimizeCloudinaryUrl(logo, 200, { crop: 'limit' })}
                               alt={titles[index] || `Company Logo ${index + 1}`}
                               width="252"
                               height="150"
@@ -76,7 +76,7 @@ const LogoMarquee = () => {
                     {logos.map((logo, index) => (
                          <img
                               key={`right-dup-${index}`}
-                              src={logo}
+                              src={optimizeCloudinaryUrl(logo, 200, { crop: 'limit' })}
                               alt={titles[index] || `Company Logo ${index + 1}`}
                               width="252"
                               height="150"

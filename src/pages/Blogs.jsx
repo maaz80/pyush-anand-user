@@ -7,6 +7,7 @@ import Breadcrumb from "../components/BreadCrumb";
 
 import { getBlogs } from "../utils/blogService";
 import { useNavigate } from "react-router-dom";
+import { optimizeCloudinaryUrl } from "../utils/imageService";
 
 // STATIC FALLBACK DATA
 const defaultBlogs = Array.from({ length: 30 }, (_, index) => ({
@@ -26,14 +27,9 @@ const Blogs = () => {
 
      // IMAGE OPTIMIZATION
      const optimizeImage = (url, width = 900) => {
-
-          if (!url) return "";
-
-          return url.replace(
-               "/upload/",
-               `/upload/w_${width},c_fill,q_auto:eco,f_auto/`
-          );
+          return optimizeCloudinaryUrl(url, width, { crop: "fill", quality: "auto" });
      };
+
 
      // FETCH BLOGS
      useEffect(() => {
@@ -221,6 +217,7 @@ const Blogs = () => {
                                         Math.max(prev - 1, 1)
                                    )
                               }
+                              aria-label="Previous Blogs"
                               className="w-11 h-11 md:w-14 md:h-14 rounded-full border border-[#D8D8D8] flex items-center justify-center text-[#7C86A5] hover:bg-dark-blue hover:text-white hover:border-dark-blue transition-all duration-300 cursor-pointer"
                          >
                               <HiOutlineChevronLeft className="w-5 h-5" />
@@ -278,6 +275,7 @@ const Blogs = () => {
                                         Math.min(prev + 1, totalPages)
                                    )
                               }
+                              aria-label="Next Blogs"
                               className="w-11 h-11 md:w-14 md:h-14 rounded-full border border-[#D8D8D8] flex items-center justify-center text-[#7C86A5] hover:bg-dark-blue hover:text-white hover:border-dark-blue transition-all duration-300 cursor-pointer"
                          >
                               <HiOutlineChevronRight className="w-5 h-5" />

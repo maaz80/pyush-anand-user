@@ -19,6 +19,7 @@ import { lazy, Suspense, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { getBlogBySlug } from '../utils/blogService';
+import { optimizeCloudinaryUrl } from '../utils/imageService';
 import '../CSS/Blog.css';
 
 const BlogDetails = () => {
@@ -37,12 +38,9 @@ const BlogDetails = () => {
      }, [slug]);
 
      const optimizeImage = (url, width) => {
-          if (!url) return "";
-          return url.replace(
-               "/upload/",
-               `/upload/w_${width},c_fill,q_auto:eco,f_auto/`
-          );
+          return optimizeCloudinaryUrl(url, width, { crop: "fill", quality: "auto" });
      };
+
 
      useEffect(() => {
           window.scrollTo(0, 0);
@@ -153,6 +151,10 @@ const BlogDetails = () => {
                                         <img
                                              src={CTABG}
                                              alt="CTA BG"
+                                             width={290}
+                                             height={290}
+                                             loading="lazy"
+                                             decoding="async"
                                              className="absolute inset-0 w-full h-auto object-fill"
                                         />
                                         {/* BG EFFECT */}
@@ -194,17 +196,18 @@ const BlogDetails = () => {
                                              fetchPriority="high"
                                              loading="eager"
                                              decoding="sync"
-                                             src={optimizeImage(blog?.image, 640)}
+                                             src={optimizeImage(blog?.image, 1000)}
                                              srcSet={`
-      ${optimizeImage(blog?.image, 320)} 320w,
-      ${optimizeImage(blog?.image, 480)} 480w,
-      ${optimizeImage(blog?.image, 640)} 640w,
-      ${optimizeImage(blog?.image, 890)} 890w
-    `}
-                                             sizes="(max-width: 768px) 100vw, 380px"
-                                             alt={blog?.alt}
-                                             width={380}
-                                             height={252}
+       ${optimizeImage(blog?.image, 320)} 320w,
+       ${optimizeImage(blog?.image, 480)} 480w,
+       ${optimizeImage(blog?.image, 768)} 768w,
+       ${optimizeImage(blog?.image, 1024)} 1024w,
+       ${optimizeImage(blog?.image, 1200)} 1200w
+     `}
+                                             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 1000px"
+                                             alt={blog?.alt || blog?.title || 'Blog Feature'}
+                                             width={1000}
+                                             height={650}
                                              className="w-full h-65 md:h-105 xl:h-135 object-fill"
                                         />
 

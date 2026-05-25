@@ -3,6 +3,8 @@ import Template from '../assets/blog-template.webp';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
 import { getBlogs } from '../utils/blogService';
+import { optimizeCloudinaryUrl } from '../utils/imageService';
+
 const Journal = () => {
      const navigate = useNavigate()
 
@@ -27,12 +29,7 @@ const Journal = () => {
      }, []);
 
      const optimizeImage = (url, width = 500) => {
-          if (!url) return "";
-
-          return url.replace(
-               "/upload/",
-               `/upload/w_${width},c_fill,q_auto:eco,f_auto/`
-          );
+          return optimizeCloudinaryUrl(url, width, { crop: "fill", quality: "auto" });
      };
 
      const handleClick = () => {
@@ -74,8 +71,8 @@ const Journal = () => {
 
                                    {/* <img src={Template} alt="Blog Template" width={608} height={374} className='w-full h-50 md:h-93.5 group-hover:scale-102 transition-transform duration-300 ease-in-out' /> */}
                                    <img
-                                        src={blog?.image ? optimizeImage(blog?.image, 500) : blogImg}
-                                        alt={blog?.alt}
+                                        src={blog?.image ? optimizeImage(blog?.image, 500) : Template}
+                                        alt={blog?.alt || 'Blog Image'}
                                         width="500"
                                         height="220"
                                         loading={index === 0 ? "eager" : "lazy"}        //   pehli eager
@@ -86,7 +83,7 @@ const Journal = () => {
                                         ${optimizeImage(blog?.image, 500)} 768w,
                                         ${optimizeImage(blog?.image, 800)} 1200w
                                         `}
-                                        sizes="(max-width: 768px) 100vw, 33vw"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 45vw"
                                         className="w-full h-50 md:h-93.5 object-fill group-hover:scale-102 transition-transform duration-300 ease-in-out"
                                    />
                                    <div className="bg-white min-h-18 md:min-h-26 shadow-sm p-4 flex items-center">
@@ -107,5 +104,6 @@ const Journal = () => {
           </section>
      )
 }
+
 
 export default Journal

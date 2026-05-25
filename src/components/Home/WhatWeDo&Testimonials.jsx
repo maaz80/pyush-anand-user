@@ -3,6 +3,7 @@ import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 import { getTestimonials } from "../../utils/testimonial";
 import { useEffect } from "react";
 import DefaultAvatar from '../../assets/default-avatar.webp';
+import { optimizeCloudinaryUrl } from "../../utils/imageService";
 
 const stats = [
      {
@@ -219,7 +220,7 @@ export default function WhatWeDo({ data }) {
                                         <div className="flex items-center gap-4 mt-6">
                                              <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center overflow-hidden">
                                                   {/* <div className="w-15 h-15 rounded-full bg-[#FF5A00]" /> */}
-                                                  <img src={activeTestimonial.avatar} alt={`${activeTestimonial.name} - Profile`} width={160} height={160} className="object-cover w-15 h-15 rounded-full" />
+                                                  <img src={optimizeCloudinaryUrl(activeTestimonial.avatar, 160, { crop: 'fill', height: 160 })} alt={`${activeTestimonial.name} - Profile`} width={160} height={160} loading="lazy" decoding="async" className="object-cover w-15 h-15 rounded-full" />
                                              </div>
 
                                              <div>

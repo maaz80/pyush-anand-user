@@ -1,9 +1,8 @@
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 import Template from '../assets/blog-template.webp';
 import { useNavigate } from "react-router-dom";
 import { getBlogs } from "../utils/blogService";
-import { useEffect } from "react";
+import { optimizeCloudinaryUrl } from "../utils/imageService";
 
 const allBlogs = Array.from({ length: 2 }, (_, index) => ({
      id: index + 1,
@@ -28,13 +27,9 @@ const RelatedBlogs = () => {
      }, []);
 
      const optimizeImage = (url, width = 500) => {
-          if (!url) return "";
-
-          return url.replace(
-               "/upload/",
-               `/upload/w_${width},c_fill,q_auto:eco,f_auto/`
-          );
+          return optimizeCloudinaryUrl(url, width, { crop: "fill", quality: "auto" });
      };
+
      return (
           <section className="relative overflow-hidden py-20">
 
@@ -67,8 +62,8 @@ const RelatedBlogs = () => {
                               >
 
                                    <img
-                                        src={blog?.image ? optimizeImage(blog?.image, 500) : blogImg}
-                                        alt={blog?.alt}
+                                        src={blog?.image ? optimizeImage(blog?.image, 500) : Template}
+                                        alt={blog?.alt || 'Blog Image'}
                                         width="500"
                                         height="220"
                                         loading={index === 0 ? "eager" : "lazy"}        //   pehli eager
@@ -79,7 +74,7 @@ const RelatedBlogs = () => {
                                         ${optimizeImage(blog?.image, 500)} 768w,
                                         ${optimizeImage(blog?.image, 800)} 1200w
                                         `}
-                                        sizes="(max-width: 768px) 100vw, 33vw"
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 45vw"
                                         className="w-full h-50 md:h-93.5 object-fill group-hover:scale-102 transition-transform duration-300 ease-in-out"
                                    />
 
@@ -96,8 +91,6 @@ const RelatedBlogs = () => {
                          ))}
 
                     </div>
-
-
 
                </div>
 

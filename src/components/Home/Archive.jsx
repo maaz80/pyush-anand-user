@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import template from '../../assets/template.webp';
+import { optimizeCloudinaryUrl } from "../../utils/imageService";
 const column1 = [
      template,
      template,
@@ -126,8 +127,12 @@ export default function Archive({ data }) {
                          onClick={() => setActiveImage(null)}
                     >
                          <img
-                              src={activeImage}
+                              src={optimizeCloudinaryUrl(activeImage, 1200, { crop: 'limit' })}
                               alt=""
+                              width={1200}
+                              height={800}
+                              loading="eager"
+                              decoding="sync"
                               className=" max-w-[95vw] max-h-[90vh] object-contain rounded-4xl "
                          />
                     </div>
@@ -327,10 +332,12 @@ function ExpandCard({ image, setActiveImage }) {
                     "
                >
                     <img
-                         src={image}
+                         src={optimizeCloudinaryUrl(image, 300, { crop: 'fill', height: 450 })}
                          alt="Archive Image"
                          width={300}
                          height={450}
+                         loading="lazy"
+                         decoding="async"
                          className="
                          h-full
                          w-full
