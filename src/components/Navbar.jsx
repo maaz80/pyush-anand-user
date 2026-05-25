@@ -4,7 +4,6 @@ import Button from './Button'
 import Logo from '../assets/pyush-logo.webp'
 import { useNavigate } from 'react-router-dom';
 
-// ✅ MegaMenu lazy load — framer-motion tab hi download hoga
 // jab user pehli baar Work/Services hover karega
 const MegaMenu = lazy(() => import('./MegaMenu'))
 

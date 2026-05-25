@@ -1,10 +1,11 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-// https://vite.dev/config/
+
 export default defineConfig({
-  plugins: [react(),tailwindcss(),],
+  plugins: [react(), tailwindcss()],
   build: {
+    cssCodeSplit: true,        // ✅ har route ka alag CSS
     cssMinify: true,
     minify: 'terser',
     reportCompressedSize: false,
@@ -23,10 +24,19 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
+            // ✅ Animation libraries — sabse bade, alag chunk
             if (id.includes('gsap')) return 'gsap';
+            if (id.includes('framer-motion')) return 'framer-motion';
+
+            // ✅ React core
             if (id.includes('react-dom')) return 'react-dom';
             if (id.includes('react-router')) return 'router';
-            if (id.includes('react-helmet')) return 'helmet';
+
+            // ✅ Icons — badi library hai
+            if (id.includes('react-icons')) return 'icons';
+
+            // ✅ Baaki sab vendor ek saath
+            if (id.includes('node_modules')) return 'vendor';
           }
         }
       }

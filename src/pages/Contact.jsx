@@ -1,5 +1,3 @@
-import ContactMap from "../assets/contact-map.webp";
-import Office from '../assets/office.webp';
 import Button from "../components/Button";
 import Breadcrumb from "../components/BreadCrumb";
 import { useEffect } from "react";
@@ -12,13 +10,12 @@ const Contact = () => {
      return (
           <section className="relative overflow-hidden pb-16 md:pb-24 plus-jakarta">
                <Breadcrumb />
-               <div className="absolute inset-0 h-full w-full">
-                    <img
-                         src='/bg.webp'
-                         alt="Gradient BG"
-                         className="w-full h-full object-fill"
-                    />
-
+               <div className="absolute inset-0 h-full w-full">\
+                    <picture>
+                         <source media="(max-width: 768px)" srcSet="/bg-mobile.webp" />
+                         <source media="(min-width: 769px)" srcSet="/bg.webp" />
+                         <img src="/bg.webp" alt="Gradient BG" className="w-full h-full object-fill" />
+                    </picture>
                     <div className="absolute inset-0 bg-white/80" />
                </div>
 
@@ -56,7 +53,7 @@ const Contact = () => {
                               {/* Image */}
                               <div className="overflow-hidden rounded-[28px]">
                                    <img
-                                        src={Office}
+                                        src='/office.webp'
                                         alt="Office"
                                         className="w-full h-60 md:h-90 object-fill"
                                    />
@@ -109,7 +106,12 @@ const Contact = () => {
                </div>
 
                <div className="max-w-92 md:max-w-150 lg:max-w-300 mx-auto pt-25 pb-50 relative z-10">
-                    <img src={ContactMap} alt="Contact Map" width={850} height={480} className="object-fill w-full h-auto" />
+                    {/* <img src={ContactMap} alt="Contact Map" width={850} height={480} className="object-cover w-full h-auto" /> */}
+                    <picture>
+                         <source media="(max-width: 768px)" srcSet="/contact-map-mobile.webp" />
+                         <source media="(min-width: 769px)" srcSet="/contact-map.webp" />
+                         <img src="/contact-map.webp" alt="Contact Map" width={850} height={480} className='object-cover w-full h-auto' />
+                    </picture>
                </div>
           </section>
      );

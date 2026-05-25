@@ -37,6 +37,8 @@ export default function HeroSection({ data }) {
                <img
                     src='/gradient-bg.webp'
                     alt="Gradient BG"
+                    width={700}
+                    height={800}
                     className="absolute inset-0 w-full min-h-screen object-cover"
                />
 

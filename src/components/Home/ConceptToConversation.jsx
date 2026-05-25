@@ -5,27 +5,27 @@ import template from '../../assets/template.webp';
 
 const services = [
      {
-          title: "Motion",
+          boldtext: "Motion",
           image: template,
      },
      {
-          title: "Print",
+          boldtext: "Print",
           image: template,
      },
      {
-          title: "Package & Merch",
+          boldtext: "Package & Merch",
           image: template,
      },
      {
-          title: "UI",
+          boldtext: "UI",
           image: template,
      },
      {
-          title: "Social Media",
+          boldtext: "Social Media",
           image: template,
      },
      {
-          title: "UX",
+          boldtext: "UX",
           image: template,
      },
 ];
@@ -133,7 +133,9 @@ export default function ConceptToConversation({data}) {
                                         <img
                                              src={service?.image}
                                              alt={service?.boldtext}
-                                             className="h-full w-full object-fill"
+                                             width={300}
+                                             height={450}
+                                             className="h-full w-full object-cover"
                                         />
 
                                         {/* Overlay */}

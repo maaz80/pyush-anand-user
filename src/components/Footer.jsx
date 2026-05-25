@@ -37,7 +37,7 @@ export default function Footer({ locationGroups = [], serviceGroups = [] }) {
      return (
           <footer className="relative bg-dark-blue text-white plus-jakarta">
                {/* CTA SECTION */}
-               <div className="relative z-20 px-5 sm:px-8 md:px-10 -top-50">
+               <div className="relative z-20 px-5 sm:px-8 md:px-10 translate-y-[-200px] mb-[-200px]">
 
                     <div className="relative max-w-310 mx-auto rounded-[28px] overflow-hidden min-h-55 md:min-h-75 flex items-center">
 
@@ -73,7 +73,7 @@ export default function Footer({ locationGroups = [], serviceGroups = [] }) {
                </div>
 
                {/* FOOTER CONTENT */}
-               <div className="relative z-10 max-w-360 mx-auto px-5 sm:px-8 md:px-10 lg:px-14 xl:px-18 pb-8 -mt-30">
+               <div className="relative z-10 max-w-360 mx-auto px-5 sm:px-8 md:px-10 lg:px-14 xl:px-18 pb-8">
 
 
                     {/* TOP */}
@@ -83,7 +83,7 @@ export default function Footer({ locationGroups = [], serviceGroups = [] }) {
                          <div className="flex flex-col sm:flex-row gap-8 md:gap-28">
 
                               {/* LOGO */}
-                              <img src={Logo} alt="Pyush Logo" className="w-32 h-45" width={112} height={160} />
+                              <img src={Logo} alt="Pyush Logo" className="w-32 h-45" width={112} height={160} className='object-cover'/>
 
                               {/* INFO */}
                               <div>
@@ -169,7 +169,7 @@ export default function Footer({ locationGroups = [], serviceGroups = [] }) {
                                              to={item.path}
                                              className={`${item.isActive
                                                   ? "text-white/75 hover:text-white"
-                                                  : "text-white/35 pointer-events-none"
+                                                  : "text-white/55 pointer-events-none"
                                                   } text-[14px] md:text-[16px] transition-all duration-300 w-fit`}
                                         >
                                              {item.name}
@@ -191,7 +191,7 @@ export default function Footer({ locationGroups = [], serviceGroups = [] }) {
                                              to={item.path}
                                              className={`${item.isActive
                                                   ? "text-white/75 hover:text-white"
-                                                  : "text-white/35 pointer-events-none"
+                                                  : "text-white/65 pointer-events-none"
                                                   } text-[14px] md:text-[16px] transition-all duration-300 w-fit`}
                                         >
                                              {item.name}

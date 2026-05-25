@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { motion } from "framer-motion";
 import template from '../../assets/template.webp';
 const column1 = [
      template,
@@ -71,7 +70,8 @@ export default function Archive({ data }) {
 
      return (
           <section className="relative overflow-hidden min-h-screen">
-               <img src='/gradient-bg.webp' alt="Gradient BG" className="absolute w-full inset-0 min-h-[185vh] md:min-h-screen" />
+               <img src='/gradient-bg.webp' alt="Gradient BG" className="object-cover absolute w-full inset-0 min-h-[185vh] md:min-h-screen" width={1240}
+                    height={689} />
 
                <div className="relative z-10 mx-auto max-w-350 px-5 md:px-8 ">
                     <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-8 max-w-350 ">
@@ -329,12 +329,15 @@ function ExpandCard({ image, setActiveImage }) {
                     <img
                          src={image}
                          alt="Archive Image"
+                         width={300}
+                         height={450}
                          className="
                          h-full
                          w-full
-                         object-fill
+                         object-cover
                          "
                     />
+                  
 
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-500" />

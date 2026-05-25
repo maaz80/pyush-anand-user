@@ -62,10 +62,9 @@ export default function WhyChooseUs({ data }) {
      }, [data]);
      return (
           <section className="relative overflow-hidden pt-16 pb-5 md:pt-24 md:pb-14 min-h-screen">
-               <img src='/bg.webp' alt="Gradient BG" className="absolute w-full inset-0 min-h-[160vh] md:min-h-screen" />
-
+               <div className="absolute inset-0 why-bg" aria-hidden="true" />
                {/* Background Overlay */}
-               <div className="absolute inset-0 bg-white/70 w-full min-h-screen" />
+               <div className="absolute inset-0 bg-white/70 w-full" />
 
                <div className="relative z-10 mx-auto max-w-350 px-2 md:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-6 lg:gap-8 items-start">
@@ -102,15 +101,17 @@ export default function WhyChooseUs({ data }) {
                                         onMouseEnter={(e) => {
                                              const dot = e.currentTarget.querySelector('.wcu-card__dot');
                                              dot.classList.remove('wcu-card__dot--leave');
-                                             // Force reflow — animation restart ke liye
-                                             void dot.offsetWidth;
-                                             dot.style.animation = 'wcuDotJourney 0.85s cubic-bezier(0.22, 0.61, 0.36, 1) forwards';
+                                             dot.style.animation = 'none';
+                                             requestAnimationFrame(() => {
+                                                  dot.style.animation = 'wcuDotJourney 0.85s cubic-bezier(0.22, 0.61, 0.36, 1) forwards';
+                                             });
                                         }}
                                         onMouseLeave={(e) => {
                                              const dot = e.currentTarget.querySelector('.wcu-card__dot');
-                                             dot.style.animation = '';
-                                             void dot.offsetWidth;
-                                             dot.classList.add('wcu-card__dot--leave');
+                                             dot.style.animation = 'none';
+                                             requestAnimationFrame(() => {
+                                                  dot.classList.add('wcu-card__dot--leave');
+                                             });
                                         }}
                                    >
 

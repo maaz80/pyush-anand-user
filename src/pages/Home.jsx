@@ -56,19 +56,21 @@ const Home = () => {
         <WhatWeDo data={home} />
       </Suspense>
 
-      <div className='relative min-h-[430vh] md:min-h-[300vh] pb-70'>
-        <img src='/bg.webp' alt="Gradient BG" className="absolute w-full inset-0 min-h-[450vh] md:min-h-[380vh] object-fill" />
-
+      <div className='relative pb-70 home-hero'>
+        {/* Background handled via CSS to avoid layout shifts */}
+        <div className="absolute inset-0 home-bg" aria-hidden="true" />
         {/* Background Overlay */}
-        <div className="absolute inset-0 bg-white/70 w-full min-h-[450vh] md:min-h-[380vh]" />
+        <div className="absolute inset-0 bg-white/70 w-full" />
 
-        <Suspense fallback={null}>
-          <Journal />
-        </Suspense>
+        <div className="relative z-20">
+          <Suspense fallback={null}>
+            <Journal />
+          </Suspense>
 
-        <Suspense fallback={null}>
-          <Faq faqData={faqData} />
-        </Suspense>
+          <Suspense fallback={null}>
+            <Faq faqData={faqData} />
+          </Suspense>
+        </div>
       </div>
     </div>
   )

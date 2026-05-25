@@ -1,7 +1,4 @@
-"use client";
-
 import { useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 import { getTestimonials } from "../../utils/testimonial";
 import { useEffect } from "react";
@@ -57,7 +54,7 @@ const defaultTestimonials = [
      },
 ];
 
-export default function WhatWeDo({data}) {
+export default function WhatWeDo({ data }) {
 
      const [[current, direction], setCurrent] = useState([0, 0]);
      const [testimonials, setTestimonials] = useState(defaultTestimonials);
@@ -66,8 +63,8 @@ export default function WhatWeDo({data}) {
           [current, testimonials]
      );
 
-    
-     
+
+
      const [impact, setImpact] = useState({
           ...defaultImpact,
           cards: stats,
@@ -144,7 +141,9 @@ export default function WhatWeDo({data}) {
                <img
                     src='/gradient-bg.webp'
                     alt="Gradient BG"
-                    className="absolute inset-0 w-full h-full object-fill opacity-90 pointer-events-none"
+                    width={1240}
+                    height={689}
+                    className="absolute inset-0 w-full h-full object-cover opacity-90 pointer-events-none"
                />
 
                <div className="max-w-325 mx-auto px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20 pt-20 md:pt-28 pb-20 md:pb-28 relative z-10">
@@ -152,7 +151,7 @@ export default function WhatWeDo({data}) {
                     {/* Top Heading */}
                     <div className="flex flex-col items-center text-center">
                          <h2 className="playfair text-[40px] sm:text-[52px] md:text-[72px] leading-14 md:leading-18 lg:leading-21 tracking-[-2px] font-bold bg-clip-text text-transparent bg-linear-to-r from-white/10 via-white/50 to-white/10">
-                            {impact?.title}
+                              {impact?.title}
                          </h2>
 
                          <div className="mt-5 border border-light-blue rounded-full w-76.5 h-12 text-[18px] text-white/75 flex items-center justify-center">
@@ -204,57 +203,36 @@ export default function WhatWeDo({data}) {
                               {/* Static Card */}
                               <div className="w-full max-w-143.75 border border-dark-blue rounded-[28px] p-5 sm:p-8 md:p-7 shadow-[0_0_40px_rgba(0,0,0,0.18)] backdrop-blur-md overflow-hidden min-h-85 md:min-h-74.5 relative">
 
-                                   <AnimatePresence mode="wait">
+                                   <div
+                                        key={current}
+                                        className="absolute inset-0 p-6 sm:p-8 md:p-7 animate-slide"
+                                   >
 
-                                        <motion.div
-                                             key={current}
-                                             initial={{
-                                                  opacity: 0,
-                                                  x: direction > 0 ? 60 : -60,
-                                             }}
-                                             animate={{
-                                                  opacity: 1,
-                                                  x: 0,
-                                             }}
-                                             exit={{
-                                                  opacity: 0,
-                                                  x: direction > 0 ? -60 : 60,
-                                             }}
-                                             transition={{
-                                                  duration: 0.55,
-                                                  ease: [0.22, 1, 0.36, 1],
-                                             }}
-                                             className="absolute inset-0 p-6 sm:p-8 md:p-7"
-                                        >
+                                        <h3 className="text-white text-[18px] md:text-[24px] leading-9 font-bold">
+                                             {activeTestimonial.title}
+                                        </h3>
 
-                                             <h3 className="text-white text-[18px] md:text-[24px] leading-9 font-bold">
-                                                  {activeTestimonial.title}
-                                             </h3>
+                                        <p className="mt-3 text-white/75 text-[14px] md:text-[16px] leading-6 tracking-[0.2px] line-clamp-5">
+                                             {activeTestimonial.quote}
+                                        </p>
 
-                                             <p className="mt-3 text-white/75 text-[14px] md:text-[16px] leading-6 tracking-[0.2px] line-clamp-5">
-                                                  {activeTestimonial.quote}
-                                             </p>
-
-                                             <div className="flex items-center gap-4 mt-6">
-                                                  <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center overflow-hidden">
-                                                       {/* <div className="w-15 h-15 rounded-full bg-[#FF5A00]" /> */}
-                                                       <img src={activeTestimonial.avatar} alt={`${activeTestimonial.name} - Profile`} width={60} height={60} className="object-fill w-15 h-15 rounded-full" />
-                                                  </div>
-
-                                                  <div>
-                                                       <h4 className="text-white text-[24px] font-bold leading-none">
-                                                            {activeTestimonial.name}
-                                                       </h4>
-
-                                                       <p className="text-white/75 mt-2">
-                                                            {activeTestimonial.role}
-                                                       </p>
-                                                  </div>
+                                        <div className="flex items-center gap-4 mt-6">
+                                             <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center overflow-hidden">
+                                                  {/* <div className="w-15 h-15 rounded-full bg-[#FF5A00]" /> */}
+                                                  <img src={activeTestimonial.avatar} alt={`${activeTestimonial.name} - Profile`} width={160} height={160} className="object-cover w-15 h-15 rounded-full" />
                                              </div>
 
-                                        </motion.div>
+                                             <div>
+                                                  <h4 className="text-white text-[24px] font-bold leading-none">
+                                                       {activeTestimonial.name}
+                                                  </h4>
 
-                                   </AnimatePresence>
+                                                  <p className="text-white/75 mt-2">
+                                                       {activeTestimonial.role}
+                                                  </p>
+                                             </div>
+                                        </div>
+                                   </div>
                               </div>
 
                               {/* Controls */}

@@ -76,3 +76,68 @@
     transform: translateX(0);
   }
 }
+
+/* MegaMenu — slide down/up */
+@keyframes menuSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Left text — fade up */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Right panel — slide from right */
+@keyframes slideFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.menu-slide-in {
+  animation: menuSlideIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.fade-up {
+  animation: fadeUp 0.5s ease forwards;
+}
+
+.fade-up-delayed {
+  animation: fadeUp 0.5s ease 0.08s forwards;
+  opacity: 0;
+}
+
+.slide-from-right {
+  animation: slideFromRight 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Arrow button hover */
+.arrow-bg {
+  transition: transform 0.3s ease;
+}
+
+.group\/arrow:hover .arrow-bg {
+  transform: scale(1.15);
+}
